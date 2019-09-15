@@ -4,7 +4,7 @@
   "description": "React loaing component.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "react-scripts test",
     "build": "./node_modules/.bin/babel src --out-file index.js"
   },
   "repository": {
@@ -34,7 +34,8 @@
     "@babel/cli": "^7.6.0",
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
-    "@babel/preset-react": "^7.0.0"
+    "@babel/preset-react": "^7.0.0",
+    "react-scripts": "3.1.1"
   },
   "dependencies": {
     "react": "^16.9.0",
