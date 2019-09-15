@@ -1,6 +1,10 @@
 # react-loading-ui
 React loaing component.
 
+[![npm package][npm-image]][npm-url] 
+[![Build Status][travis-image]][travis-url] 
+[![Dependencies Status][david-image]][david-url]
+
 ## Getting started
 
 #### Install with NPM:
@@ -99,3 +103,10 @@ If you want to customize the styles, you can use the following classNames:
 **Barış Ateş**
  - http://barisates.com
  - [github/barisates](https://github.com/barisates "github/barisates")
+ 
+[npm-image]:https://img.shields.io/npm/v/react-loading-ui.svg
+[npm-url]:https://www.npmjs.com/package/react-loading-ui
+[travis-image]:https://travis-ci.org/barisates/react-loading-ui.svg?branch=master
+[travis-url]:https://travis-ci.org/barisates/react-loading-ui
+[david-image]:https://david-dm.org/barisates/react-loading-ui.svg
+[david-url]:https://david-dm.org/barisates/react-loading-ui
