@@ -1,0 +1,43 @@
+{
+  "name": "react-loading-ui",
+  "version": "1.0.0",
+  "description": "React loaing component.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/babel src --out-file index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/barisates/react-loading-ui.git"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "react-component",
+    "loading",
+    "loader",
+    "ui-block",
+    "block-ui"
+  ],
+  "author": "barisates (info@barisates.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/barisates/react-loading-ui/issues"
+  },
+  "homepage": "https://github.com/barisates/react-loading-ui#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-react": "^7.0.0"
+  },
+  "dependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
+  "peerDependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  }
+}
