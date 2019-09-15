@@ -20,8 +20,12 @@
     "ui-block",
     "block-ui"
   ],
-  "author": "barisates (info@barisates.com)",
-  "license": "ISC",
+  "author": {
+    "name": "Barış Ateş",
+    "email": "info@barisates.com",
+    "url": "http://barisates.com"
+  },
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/barisates/react-loading-ui/issues"
   },
