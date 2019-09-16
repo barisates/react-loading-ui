@@ -1,6 +1,6 @@
 {
   "name": "react-loading-ui",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "React loaing component.",
   "main": "index.js",
   "scripts": {
@@ -29,7 +29,7 @@
   "bugs": {
     "url": "https://github.com/barisates/react-loading-ui/issues"
   },
-  "homepage": "https://github.com/barisates/react-loading-ui#readme",
+  "homepage": "https://barisates.github.io/react-loading-ui/",
   "devDependencies": {
     "@babel/cli": "^7.6.0",
     "@babel/core": "^7.6.0",

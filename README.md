@@ -4,6 +4,8 @@ React loaing component.
 [![npm package][npm-image]][npm-url] 
 [![Build Status][travis-image]][travis-url] 
 [![Dependencies Status][david-image]][david-url]
+[![Package Size][bundlephobia-image]][bundlephobia-url]
+
 
 ## Getting started
 
@@ -110,3 +112,5 @@ If you want to customize the styles, you can use the following classNames:
 [travis-url]:https://travis-ci.org/barisates/react-loading-ui
 [david-image]:https://david-dm.org/barisates/react-loading-ui.svg
 [david-url]:https://david-dm.org/barisates/react-loading-ui
+[bundlephobia-image]:https://badgen.net/bundlephobia/minzip/react-loading-ui
+[bundlephobia-url]:https://bundlephobia.com/result?p=react-loading-ui
