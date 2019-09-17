@@ -41,15 +41,18 @@ class LoadingComponent extends Component {
         super(props)
     }
     render() {
+
+        const { theme, title, text, progress, progressValue } = this.props;
+
         return (
-            <div className={"loading-ui-overlay " + this.props.theme}>
+            <div className={"loading-ui-overlay " + theme}>
                 <div className="loading-ui-wrapper">
                     <div className="loading-ui-body">
-                        <h4 className="loading-ui-title">{this.props.title}</h4>
-                        <p className="loading-ui-text">{this.props.text}</p>
-                        {this.props.progress ?
+                        <h4 className="loading-ui-title">{title}</h4>
+                        <p className="loading-ui-text">{text}</p>
+                        {progress ?
                             <div className="loading-ui-progress">
-                                <div className="loading-ui-progress-bar" style={{ width: this.props.progressValue + "%" }}></div>
+                                <div className="loading-ui-progress-bar" style={{ width: progressValue + "%" }}></div>
                             </div>
                             :
                             <div className="loading-ui-spinner"></div>
@@ -67,7 +70,7 @@ LoadingComponent.defaultProps = defaultProps
  * [EXPORT] 
  */
 
- 
+
 /**
  * @param {object} props 
  * @param {string} [props.title]

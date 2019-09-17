@@ -84,22 +84,28 @@ function (_Component) {
   _createClass(LoadingComponent, [{
     key: "render",
     value: function render() {
+      var _this$props = this.props,
+          theme = _this$props.theme,
+          title = _this$props.title,
+          text = _this$props.text,
+          progress = _this$props.progress,
+          progressValue = _this$props.progressValue;
       return _react["default"].createElement("div", {
-        className: "loading-ui-overlay " + this.props.theme
+        className: "loading-ui-overlay " + theme
       }, _react["default"].createElement("div", {
         className: "loading-ui-wrapper"
       }, _react["default"].createElement("div", {
         className: "loading-ui-body"
       }, _react["default"].createElement("h4", {
         className: "loading-ui-title"
-      }, this.props.title), _react["default"].createElement("p", {
+      }, title), _react["default"].createElement("p", {
         className: "loading-ui-text"
-      }, this.props.text), this.props.progress ? _react["default"].createElement("div", {
+      }, text), progress ? _react["default"].createElement("div", {
         className: "loading-ui-progress"
       }, _react["default"].createElement("div", {
         className: "loading-ui-progress-bar",
         style: {
-          width: this.props.progressValue + "%"
+          width: progressValue + "%"
         }
       })) : _react["default"].createElement("div", {
         className: "loading-ui-spinner"

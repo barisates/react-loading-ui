@@ -5,7 +5,7 @@
   "dependencies": {
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-loading-ui": "^1.0.0",
+    "react-loading-ui": "latest",
     "react-scripts": "3.1.1"
   },
   "scripts": {
