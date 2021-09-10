@@ -1,6 +1,6 @@
 {
   "name": "react-loading-ui",
-  "version": "1.2.1",
+  "version": "1.2.3",
   "description": "React loaing component.",
   "main": "index.js",
   "scripts": {
