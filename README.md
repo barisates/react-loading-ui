@@ -74,6 +74,12 @@ SetDefault({
     progressedClose: false,
     /* Default theme [light|dark] */
     theme: "light",
+    /* Top Bar Loading */
+    topBar: false,
+    /* Top Bar Loading */
+    topBar: false,
+    /* Top Bar Loading Color */
+    topBarColor: '#2764B0',
 });
 ```
 ##### Loading
