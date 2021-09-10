@@ -1,88 +1,106 @@
 div.loading-ui-overlay {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    background-color: RGBA(255, 255, 255, 0.5);
-    z-index: 999999;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: RGBA(255, 255, 255, 0.5);
+  z-index: 999999;
 }
 
 div.loading-ui-overlay div.loading-ui-wrapper {
-    position: relative;
-    margin: 15% auto;
-    max-width: 30rem;
+  position: relative;
+  margin: 15% auto;
+  max-width: 30rem;
 }
 
 div.loading-ui-overlay div.loading-ui-wrapper div.loading-ui-body {
-    position: relative;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border-radius: .25rem;
-    text-align: center;
-    padding: 1.25rem;
-    border: none;
-    -webkit-box-shadow: 0px 0px 13px 0px rgba(236, 236, 241, 0.44);
-    box-shadow: 0px 0px 13px 0px rgba(236, 236, 241, 0.44);
-    margin-bottom: 30px;
-    color: #5b626b;
-    padding: 1.25rem;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border-radius: .25rem;
+  text-align: center;
+  padding: 1.25rem;
+  border: none;
+  -webkit-box-shadow: 0px 0px 13px 0px rgba(236, 236, 241, 0.44);
+  box-shadow: 0px 0px 13px 0px rgba(236, 236, 241, 0.44);
+  margin-bottom: 30px;
+  color: #5b626b;
+  padding: 1.25rem;
 }
 
 div.loading-ui-overlay div.loading-ui-wrapper div.loading-ui-body h4.loading-ui-title {
-    font-size: 16px;
-    margin: 10px 0;
-    margin-bottom: .75rem;
-    line-height: 1.2;
+  font-size: 16px;
+  margin: 10px 0;
+  margin-bottom: .75rem;
+  line-height: 1.2;
 }
 
 div.loading-ui-overlay div.loading-ui-wrapper div.loading-ui-body p.loading-ui-text {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 div.loading-ui-overlay div.loading-ui-wrapper div.loading-ui-body div.loading-ui-spinner {
-    display: inline-block;
-    width: 2rem;
-    height: 2rem;
-    vertical-align: text-bottom;
-    border: .25em solid currentColor;
-    border-right-color: transparent;
-    border-radius: 50%;
-    -webkit-animation: spinner-border .75s linear infinite;
-    animation: spinner-border .75s linear infinite;
-    color: #38a4f8 !important;
-    margin: 0 auto;
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  vertical-align: text-bottom;
+  border: .25em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  -webkit-animation: spinner-border .75s linear infinite;
+  animation: spinner-border .75s linear infinite;
+  color: #38a4f8 !important;
+  margin: 0 auto;
 }
 
 div.loading-ui-overlay div.loading-ui-wrapper div.loading-ui-body div.loading-ui-progress {
-    background-color: #e9ecef;
-    height: 1rem;
-    width: 18rem;
-    margin: 0 auto;
-    border-radius: 3px;
-    overflow: hidden;
+  background-color: #e9ecef;
+  height: 1rem;
+  width: 18rem;
+  margin: 0 auto;
+  border-radius: 3px;
+  overflow: hidden;
 }
 
 div.loading-ui-overlay div.loading-ui-wrapper div.loading-ui-body div.loading-ui-progress div.loading-ui-progress-bar {
-    height: 100%;
-    background-color: #38a4f8;
-    transition: width .1s ease;
+  height: 100%;
+  background-color: #38a4f8;
+  transition: width .1s ease;
 }
 
 /* loading-ui light theme */
 
 div.loading-ui-overlay.dark {
-    background-color: RGBA(0, 0, 0, 0.5);
+  background-color: RGBA(0, 0, 0, 0.5);
 }
 
 div.loading-ui-overlay.dark div.loading-ui-wrapper div.loading-ui-body {
-    background-color: #5b626b;
-    color: #fff;
-    box-shadow: 0px 0px 13px 0px rgba(117, 117, 117, 0.44);
+  background-color: #5b626b;
+  color: #fff;
+  box-shadow: 0px 0px 13px 0px rgba(117, 117, 117, 0.44);
+}
+
+/* topbar */
+
+div.loading-ui-overlay.topbar {
+  background-color: transparent !important;
+}
+
+div.loading-ui-overlay .loading-ui-topbar {
+  top: 0;
+  left: 0;
+  height: 5px;
+  position: fixed;
+  z-index: 666000666;
+  -webkit-transition:width 500ms ease-out, height 500ms ease-out;
+  -moz-transition:width 500ms ease-out, height 500ms ease-out;
+  -o-transition:width 500ms ease-out, height 500ms ease-out;
+  transition:width 500ms ease-out, height 500ms ease-out;
 }

@@ -47,6 +47,8 @@ var defaultProps = {
   progress: false,
   progressedClose: false,
   theme: "light",
+  topBar: false,
+  topBarColor: '#2764B0',
   // Private
   progressValue: 0
 };
@@ -76,12 +78,44 @@ function (_Component) {
   _inherits(LoadingComponent, _Component);
 
   function LoadingComponent(props) {
+    var _this;
+
     _classCallCheck(this, LoadingComponent);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(LoadingComponent).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(LoadingComponent).call(this, props));
+    _this.state = {
+      width: "0%"
+    };
+    return _this;
   }
 
   _createClass(LoadingComponent, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      setTimeout(function () {
+        var percentage = Math.random() * 30 + 10;
+
+        _this2.TopBarProgress(percentage);
+      }, 100);
+    }
+  }, {
+    key: "TopBarProgress",
+    value: function TopBarProgress(percentage) {
+      var _this3 = this;
+
+      this.setState({
+        width: "".concat(percentage, "%")
+      }, function () {
+        setTimeout(function () {
+          var per = Math.random() * ((100 - percentage) / 2) + percentage;
+
+          _this3.TopBarProgress(per);
+        }, 500);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -89,10 +123,19 @@ function (_Component) {
           title = _this$props.title,
           text = _this$props.text,
           progress = _this$props.progress,
-          progressValue = _this$props.progressValue;
+          progressValue = _this$props.progressValue,
+          topBar = _this$props.topBar,
+          topBarColor = _this$props.topBarColor;
       return _react["default"].createElement("div", {
-        className: "loading-ui-overlay " + theme
-      }, _react["default"].createElement("div", {
+        className: "loading-ui-overlay ".concat(theme, " ").concat(topBar && 'topbar')
+      }, topBar ? _react["default"].createElement("div", {
+        className: "loading-ui-topbar",
+        id: "loading-ui-topbar",
+        style: {
+          width: this.state.width,
+          backgroundColor: topBarColor
+        }
+      }) : _react["default"].createElement("div", {
         className: "loading-ui-wrapper"
       }, _react["default"].createElement("div", {
         className: "loading-ui-body"
@@ -128,6 +171,8 @@ LoadingComponent.defaultProps = defaultProps;
  * @param {bool} [props.progress]
  * @param {boolean} [props.progressedClose]
  * @param {string} [props.theme]
+ * @param {bool} [props.topBar]
+ * @param {string} [props.topBarColor]
  */
 
 function SetDefault(props) {
@@ -141,6 +186,8 @@ function SetDefault(props) {
  * @param {bool} [props.progress]
  * @param {boolean} [props.progressedClose]
  * @param {string} [props.theme]
+ * @param {bool} [props.topBar]
+ * @param {string} [props.topBarColor]
  */
 
 

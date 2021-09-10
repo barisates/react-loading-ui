@@ -18,6 +18,10 @@ class App extends Component {
     Loading();
     setTimeout(() => { Loading() }, 3000);
   }
+  TopbarLoading() {
+    Loading({ topBar: true });
+    setTimeout(() => { Loading() }, 3000);
+  }
   LoadingProgress() {
 
     Loading({
@@ -52,6 +56,7 @@ class App extends Component {
           <h5 className="mb-3">React Loaing Component</h5>
           <div>
             <button type="button" className="btn btn-sm btn-dark mr-4" onClick={(e) => this.DefaultLoading()}>Show Loading</button>
+            <button type="button" className="btn btn-sm btn-dark mr-4" onClick={(e) => this.TopbarLoading()}>Show Top Bar Loading</button>
             <button type="button" className="btn btn-sm btn-dark" onClick={(e) => this.LoadingProgress()}>Show Progress</button> <br />
             <button type="button" className="btn btn-sm btn-light" onClick={(e) => {
               SetDefault({ theme: this.state.theme });
