@@ -32,7 +32,7 @@ const Element = {
   },
   Remove: () => {
     const div = document.getElementById('loading-ui')
-    
+
     unmountComponentAtNode(div)
     div.parentNode.removeChild(div)
   }
@@ -133,6 +133,27 @@ export function Loading(props) {
   }
 }
 
+/**
+ * @param {object} props 
+ * @param {string} [props.title]
+ * @param {string} [props.text]
+ * @param {bool} [props.progress]
+ * @param {boolean} [props.progressedClose]
+ * @param {string} [props.theme]
+ * @param {bool} [props.topBar]
+ * @param {string} [props.topBarColor]
+ */
+export function ShowLoading(props) {
+  if (!document.getElementById('loading-ui')) {
+    Loading(props);
+  }
+}
+
+export function HideLoading() {
+  if (document.getElementById('loading-ui')) {
+    Loading();
+  }
+}
 
 /**
  * @param {number} progress 
