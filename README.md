@@ -1,3 +1,4 @@
+
 # react-loading-ui
 React loaing component.
 
@@ -23,6 +24,7 @@ $ npm install react-loading-ui
 - To use, just call the ````Loading()```` function.
 
 > Note: The ````Loading()```` function **toggle** between **hide** and **show**.
+> But instead of **toggling**, you can also use ````ShowLoading()```` and ````HideLoading()````
 
 ```jsx
 import React, { Component } from 'react';
@@ -84,16 +86,20 @@ SetDefault({
 ```
 ##### Loading
 
-````Loading()```` preview with light color theme.
+````Loading()```` and ```ShowLoading()``` preview with light color theme.
 
 ![Loading()](http://barisates.com/git/rlui/loading.jpg "Loading")
 
 ##### Progress
-```Loading({ progress: true })``` preview with light color theme.
+```Loading({ progress: true })``` and ```ShowLoading({ progress: true })``` preview with light color theme.
 
 With the ```Progress(progress)``` function you can ensure the loading progress, see the [demo](https://codesandbox.io/s/react-loading-ui-khrt7 "demo").
 
 ![Porgress](http://barisates.com/git/rlui/progress.jpg "Porgress")
+
+##### Hide Loading
+If you want to force hiding, you can use ```HideLoading()``` function.
+
 
 ##### CSS Overrides
 
