@@ -5,13 +5,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.SetDefault = SetDefault;
 exports.Loading = Loading;
+exports.ShowLoading = ShowLoading;
+exports.HideLoading = HideLoading;
 exports.Progress = Progress;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _reactDom = require("react-dom");
+var _client = _interopRequireDefault(require("react-dom/client"));
 
 require("./index.css");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
@@ -23,23 +27,13 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var defaultProps = {
   title: "Page Loading",
@@ -54,6 +48,7 @@ var defaultProps = {
 };
 var Props = defaultProps;
 var Element = {
+  root: null,
   Create: function Create(props) {
     var div = document.getElementById('loading-ui');
 
@@ -63,101 +58,71 @@ var Element = {
       document.body.appendChild(div);
     }
 
-    (0, _reactDom.render)(_react["default"].createElement(LoadingComponent, props), div);
+    Element.root = _client["default"].createRoot(div);
+    Element.root.render(_react["default"].createElement(LoadingComponent, props));
   },
   Remove: function Remove() {
     var div = document.getElementById('loading-ui');
-    (0, _reactDom.unmountComponentAtNode)(div);
+    Element.root.unmount();
     div.parentNode.removeChild(div);
   }
 };
 
-var LoadingComponent =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(LoadingComponent, _Component);
+var LoadingComponent = function LoadingComponent(_ref) {
+  var theme = _ref.theme,
+      title = _ref.title,
+      text = _ref.text,
+      progress = _ref.progress,
+      progressValue = _ref.progressValue,
+      topBar = _ref.topBar,
+      topBarColor = _ref.topBarColor;
 
-  function LoadingComponent(props) {
-    var _this;
+  var _useState = (0, _react.useState)("0%"),
+      _useState2 = _slicedToArray(_useState, 2),
+      width = _useState2[0],
+      setWidth = _useState2[1];
 
-    _classCallCheck(this, LoadingComponent);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(LoadingComponent).call(this, props));
-    _this.state = {
-      width: "0%"
-    };
-    return _this;
-  }
-
-  _createClass(LoadingComponent, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      setTimeout(function () {
-        var percentage = Math.random() * 30 + 10;
-
-        _this2.TopBarProgress(percentage);
-      }, 100);
+  var TopBarProgress = (0, _react.useCallback)(function (percentage) {
+    setWidth("".concat(percentage, "%"));
+    setTimeout(function () {
+      var per = Math.random() * ((100 - percentage) / 2) + percentage;
+      TopBarProgress(per);
+    }, 500);
+  }, []);
+  (0, _react.useEffect)(function () {
+    setTimeout(function () {
+      var percentage = Math.random() * 30 + 10;
+      TopBarProgress(percentage);
+    }, 100);
+  }, [TopBarProgress]);
+  return _react["default"].createElement("div", {
+    className: "loading-ui-overlay ".concat(theme, " ").concat(topBar && 'topbar')
+  }, topBar ? _react["default"].createElement("div", {
+    className: "loading-ui-topbar",
+    id: "loading-ui-topbar",
+    style: {
+      width: width,
+      backgroundColor: topBarColor
     }
-  }, {
-    key: "TopBarProgress",
-    value: function TopBarProgress(percentage) {
-      var _this3 = this;
-
-      this.setState({
-        width: "".concat(percentage, "%")
-      }, function () {
-        setTimeout(function () {
-          var per = Math.random() * ((100 - percentage) / 2) + percentage;
-
-          _this3.TopBarProgress(per);
-        }, 500);
-      });
+  }) : _react["default"].createElement("div", {
+    className: "loading-ui-wrapper"
+  }, _react["default"].createElement("div", {
+    className: "loading-ui-body"
+  }, _react["default"].createElement("h4", {
+    className: "loading-ui-title"
+  }, title), _react["default"].createElement("p", {
+    className: "loading-ui-text"
+  }, text), progress ? _react["default"].createElement("div", {
+    className: "loading-ui-progress"
+  }, _react["default"].createElement("div", {
+    className: "loading-ui-progress-bar",
+    style: {
+      width: progressValue + "%"
     }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          theme = _this$props.theme,
-          title = _this$props.title,
-          text = _this$props.text,
-          progress = _this$props.progress,
-          progressValue = _this$props.progressValue,
-          topBar = _this$props.topBar,
-          topBarColor = _this$props.topBarColor;
-      return _react["default"].createElement("div", {
-        className: "loading-ui-overlay ".concat(theme, " ").concat(topBar && 'topbar')
-      }, topBar ? _react["default"].createElement("div", {
-        className: "loading-ui-topbar",
-        id: "loading-ui-topbar",
-        style: {
-          width: this.state.width,
-          backgroundColor: topBarColor
-        }
-      }) : _react["default"].createElement("div", {
-        className: "loading-ui-wrapper"
-      }, _react["default"].createElement("div", {
-        className: "loading-ui-body"
-      }, _react["default"].createElement("h4", {
-        className: "loading-ui-title"
-      }, title), _react["default"].createElement("p", {
-        className: "loading-ui-text"
-      }, text), progress ? _react["default"].createElement("div", {
-        className: "loading-ui-progress"
-      }, _react["default"].createElement("div", {
-        className: "loading-ui-progress-bar",
-        style: {
-          width: progressValue + "%"
-        }
-      })) : _react["default"].createElement("div", {
-        className: "loading-ui-spinner"
-      }))));
-    }
-  }]);
-
-  return LoadingComponent;
-}(_react.Component);
+  })) : _react["default"].createElement("div", {
+    className: "loading-ui-spinner"
+  }))));
+};
 
 LoadingComponent.defaultProps = defaultProps;
 /** 
@@ -202,6 +167,29 @@ function Loading(props) {
   }
 }
 /**
+ * @param {object} props 
+ * @param {string} [props.title]
+ * @param {string} [props.text]
+ * @param {bool} [props.progress]
+ * @param {boolean} [props.progressedClose]
+ * @param {string} [props.theme]
+ * @param {bool} [props.topBar]
+ * @param {string} [props.topBarColor]
+ */
+
+
+function ShowLoading(props) {
+  if (!document.getElementById('loading-ui')) {
+    Loading(props);
+  }
+}
+
+function HideLoading() {
+  if (document.getElementById('loading-ui')) {
+    Loading();
+  }
+}
+/**
  * @param {number} progress 
  */
 
@@ -211,7 +199,7 @@ function Progress(progress) {
 
   if (div && progress < 100) {
     Props.progressValue = progress;
-    (0, _reactDom.render)(_react["default"].createElement(LoadingComponent, Props), div);
+    Element.root.render(_react["default"].createElement(LoadingComponent, Props));
   } else if (progress >= 100 && Props.progressedClose && div) {
     Element.Remove();
   }
