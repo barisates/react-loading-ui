@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { render, unmountComponentAtNode } from 'react-dom'
+import React, { useEffect, useState, useCallback } from 'react';
+import ReactDOM from 'react-dom/client';
 import './index.css';
 
 let defaultProps = {
@@ -17,6 +17,7 @@ let defaultProps = {
 let Props = defaultProps;
 
 const Element = {
+  root:null,
   Create: (props) => {
 
     let div = document.getElementById('loading-ui');
@@ -26,48 +27,40 @@ const Element = {
       div.id = 'loading-ui';
       document.body.appendChild(div);
     }
-
-    render(<LoadingComponent {...props} />, div)
+    Element.root = ReactDOM.createRoot(div);
+    Element.root.render(<LoadingComponent {...props}/>);
 
   },
   Remove: () => {
     const div = document.getElementById('loading-ui')
 
-    unmountComponentAtNode(div)
+    Element.root.unmount()
     div.parentNode.removeChild(div)
   }
 }
 
+const LoadingComponent = ({ theme, title, text, progress, progressValue, topBar, topBarColor }) => {
+  const[width, setWidth] = useState("0%")
+  
+  const TopBarProgress = useCallback((percentage) =>  {
+    setWidth(`${percentage}%`);
+    setTimeout(() => {
+      const per = Math.random() * ((100 - percentage) / 2) + percentage;
+      TopBarProgress(per);
+    }, 500);
+  }, [])
 
-class LoadingComponent extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      width: "0%",
-    }
-  }
-  componentDidMount() {
+  useEffect(() => {
     setTimeout(() => {
       const percentage = Math.random() * 30 + 10;
-      this.TopBarProgress(percentage);
+      TopBarProgress(percentage);
     }, 100);
-  }
-  TopBarProgress(percentage) {
-    this.setState({ width: `${percentage}%` }, () => {
-      setTimeout(() => {
-        const per = Math.random() * ((100 - percentage) / 2) + percentage;
-        this.TopBarProgress(per);
-      }, 500);
-    });
-  }
-  render() {
-
-    const { theme, title, text, progress, progressValue, topBar, topBarColor } = this.props;
+  }, [TopBarProgress]);
 
     return (
       <div className={`loading-ui-overlay ${theme} ${topBar && 'topbar'}`}>
         {topBar ?
-          (<div className="loading-ui-topbar" id="loading-ui-topbar" style={{ width: this.state.width, backgroundColor: topBarColor }} />) :
+          (<div className="loading-ui-topbar" id="loading-ui-topbar" style={{ width: width, backgroundColor: topBarColor }} />) :
           (<div className="loading-ui-wrapper">
             <div className="loading-ui-body">
               <h4 className="loading-ui-title">{title}</h4>
@@ -84,7 +77,6 @@ class LoadingComponent extends Component {
 
       </div>
     )
-  }
 }
 
 LoadingComponent.defaultProps = defaultProps
@@ -121,7 +113,6 @@ export function SetDefault(props) {
  * @param {string} [props.topBarColor]
  */
 export function Loading(props) {
-
   let div = document.getElementById('loading-ui')
 
   Props = props;
@@ -163,10 +154,9 @@ export function Progress(progress) {
   let div = document.getElementById('loading-ui');
 
   if (div && progress < 100) {
-
     Props.progressValue = progress;
 
-    render(<LoadingComponent {...Props} />, div)
+    Element.root.render(<LoadingComponent {...Props}/>);
 
   } else if (progress >= 100 && Props.progressedClose && div) {
     Element.Remove();
